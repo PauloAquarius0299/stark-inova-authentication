@@ -56,12 +56,13 @@ export async function signUp(
     console.log(prisma.user);
 
     
-    {/*const session = await lucia.createSession(userId, {});
+    const session = await lucia.createSession(userId, {});
     const sessionCookie = lucia.createSessionCookie(session.id);
-    cookies().set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes);*/}
+    (await cookies()).set(sessionCookie.name, sessionCookie.value, sessionCookie.attributes)
 
     redirect("/");
   } catch (error) {
+    console.log(error);
     if (error instanceof Error && error.message.includes("Redirect")) {
       throw error;
     }
