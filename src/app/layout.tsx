@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | paulotech",
-    default: "paulotech"
+    template: "%s | Stark Inova",
+    default: "Stark Inova"
   },
   description: "The authentication lading page stark inova",
 };
