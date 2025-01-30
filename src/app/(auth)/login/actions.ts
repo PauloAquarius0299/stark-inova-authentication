@@ -21,7 +21,6 @@ export async function login(
         },
       },
     });
-    console.log(existingUser);
 
     if (!existingUser || !existingUser.passwordHash) {
       return {

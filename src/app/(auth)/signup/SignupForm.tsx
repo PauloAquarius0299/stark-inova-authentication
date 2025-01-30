@@ -80,7 +80,7 @@ export default function SignUpForm() {
             )}
           />
           <LoadingButton loading={isPending} type="submit" className="w-full" disabled={isPending}>
-            Create account
+            Criar Usuário
           </LoadingButton>
         </form>
       </Form>

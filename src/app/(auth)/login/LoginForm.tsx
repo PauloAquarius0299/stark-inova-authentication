@@ -63,7 +63,7 @@ export default function LoginForm(){
           )}
         />
         <LoadingButton loading={isPending} type="submit" className="w-full">
-          Log in
+          Acessar
         </LoadingButton>
       </form>
     </Form>

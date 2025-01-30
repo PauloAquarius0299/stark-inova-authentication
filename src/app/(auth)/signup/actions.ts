@@ -53,7 +53,6 @@ export async function signUp(
         passwordHash,
       },
     });
-    console.log(prisma.user);
 
     
     const session = await lucia.createSession(userId, {});
@@ -62,7 +61,6 @@ export async function signUp(
 
     redirect("/");
   } catch (error) {
-    console.log(error);
     if (error instanceof Error && error.message.includes("Redirect")) {
       throw error;
     }

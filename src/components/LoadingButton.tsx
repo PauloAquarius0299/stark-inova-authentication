@@ -3,18 +3,24 @@ import { Button, ButtonProps } from "./ui/button";
 import { Loader2 } from "lucide-react";
 
 interface LoadingButtonProps extends ButtonProps {
-    loading:boolean;
+    loading: boolean;
 }
+
 export default function LoadingButton({
     loading,
     disabled,
     className,
+    children, 
     ...props
-}: LoadingButtonProps){
-    return <Button
-    disabled={loading || disabled}
-    className={cn("flex items-center gap-2 text-white", className)}
-    >
-        {loading && <Loader2 className="size-5 animate-spin" />}
-    </Button>
+}: LoadingButtonProps) {
+    return (
+        <Button
+            disabled={loading || disabled}
+            className={cn("flex items-center gap-2 text-white", className)}
+            {...props} 
+        >
+            {loading && <Loader2 className="size-5 animate-spin" />}
+            {!loading && children} 
+        </Button>
+    );
 }
