@@ -5,6 +5,7 @@ import Hero from '@/components/Home/Hero'
 import LogosTicker from '@/components/Home/LogosTicker'
 import Princing from '@/components/Home/Princing'
 import ProductShowcase from '@/components/Home/ProductShowcase'
+import Service from '@/components/Home/Services'
 import SignToPage from '@/components/Home/SignToPage'
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <LogosTicker />
       <ProductShowcase />
       <Princing />
+      <Service />
       <Clients/>
       <SignToPage />
       <Footer />
