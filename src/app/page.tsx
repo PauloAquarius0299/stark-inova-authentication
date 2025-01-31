@@ -1,3 +1,4 @@
+import { validateRequest } from '@/auth'
 import Clients from '@/components/Home/Clients'
 import Footer from '@/components/Home/Footer'
 import Header from '@/components/Home/Header'
@@ -8,10 +9,11 @@ import ProductShowcase from '@/components/Home/ProductShowcase'
 import Service from '@/components/Home/Services'
 import SignToPage from '@/components/Home/SignToPage'
 
-export default function Home() {
+export default async function Home() {
+  const { username } = await validateRequest(); 
   return (
     <main>
-      <Header />
+      <Header username={username}  />
       <Hero />
       <LogosTicker />
       <ProductShowcase />

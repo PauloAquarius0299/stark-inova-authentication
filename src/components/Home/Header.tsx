@@ -1,16 +1,27 @@
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight, MenuIcon, X } from "lucide-react";
 import Logo from "@/assets/logo.png";
 import { useRouter } from "next/navigation";
+import { logout } from "@/app/(auth)/actions";
 
-const Header = () => {
+interface HeaderProps {
+  username: string | null; 
+}
+
+const Header = ({ username }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const router = useRouter(); 
+  const router = useRouter();
 
   const redirectToSignup = () => {
-    router.push('/signup'); 
+    router.push('/signup');
+  }
+
+  const handleLogout = async () => {
+    await logout();
+    router.push('/login');
   }
 
   return (
@@ -31,10 +42,24 @@ const Header = () => {
             <a href="#" className="hover:text-black">Serviços</a>
             <a href="#" className="hover:text-black">Clientes</a>
             <a href="#" className="hover:text-black">Contato</a>
-            <button className="bg-black text-white px-4 py-2 rounded-lg font-medium flex items-center justify-center">
-              Se Cadastre
-              <ArrowRight className="h-4 w-4 ml-1" aria-label="Seta para a direita" />
-            </button>
+            {username ? ( // Exiba o username se o usuário estiver logado
+              <div className="flex items-center gap-4">
+                <span className="text-black">Olá, {username}</span>
+                <button 
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg font-medium flex items-center justify-center"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button className="bg-black text-white px-4 py-2 rounded-lg font-medium flex items-center justify-center"
+                onClick={redirectToSignup}
+              >
+                Se Cadastre
+                <ArrowRight className="h-4 w-4 ml-1" aria-label="Seta para a direita" />
+              </button>
+            )}
           </nav>
           <button
             className="md:hidden"
@@ -53,12 +78,24 @@ const Header = () => {
             <a href="#" className="hover:text-gray-700">Serviços</a>
             <a href="#" className="hover:text-gray-700">Clientes</a>
             <a href="#" className="hover:text-gray-700">Contato</a>
-            <button className="bg-black text-white px-4 py-2 rounded-lg font-medium flex items-center justify-center"
-            onClick={redirectToSignup}
-            >
-              Se Cadastre
-              <ArrowRight className="h-4 w-4 ml-1" aria-label="Seta para a direita" />
-            </button>
+            {username ? ( // Exiba o username no menu móvel
+              <div className="flex flex-col items-center gap-4">
+                <span className="text-black">Olá, {username}</span>
+                <button 
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg font-medium flex items-center justify-center"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button className="bg-black text-white px-4 py-2 rounded-lg font-medium flex items-center justify-center"
+                onClick={redirectToSignup}
+              >
+                Se Cadastre
+                <ArrowRight className="h-4 w-4 ml-1" aria-label="Seta para a direita" />
+              </button>
+            )}
           </nav>
         </div>
       )}

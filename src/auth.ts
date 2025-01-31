@@ -33,7 +33,6 @@ declare module "lucia" {
   }
 }
 
-// Tipagem para os atributos do usuário no banco de dados
 interface DatabaseUserAttributes {
   id: string;
   username: string;
@@ -42,15 +41,17 @@ interface DatabaseUserAttributes {
   googleId: string | null;
 }
 
+
 export const validateRequest = cache(
   async (): Promise<{
     user: User | null;
     session: Session | null;
+    username: string | null; // Adicione o username aqui
   }> => {
     const sessionId = (await cookies()).get(lucia.sessionCookieName)?.value ?? null;
 
     if (!sessionId) {
-      return { user: null, session: null };
+      return { user: null, session: null, username: null };
     }
 
     const result = await lucia.validateSession(sessionId);
@@ -67,6 +68,10 @@ export const validateRequest = cache(
       console.error("Erro ao definir cookies da sessão:", error);
     }
 
-    return result;
+    return {
+      user: result.user,
+      session: result.session,
+      username: result.user?.username || null, // Retorne o username
+    };
   }
 );
