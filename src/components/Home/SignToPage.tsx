@@ -6,15 +6,21 @@ import Image from 'next/image'
 import Robot from "@/assets/robot.png"
 import Robot2 from "@/assets/robot2.png"
 import {motion, useScroll, useTransform} from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 const SignToPage = () => {
   const sectionRef = useRef(null);
+  const router = useRouter(); 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
 
   const translateY = useTransform(scrollYProgress, [0,1], [150, -150]);
+
+  const redirectToSignup = () => {
+    router.push('/signup'); 
+  }
 
   return (
     <section ref={sectionRef} className='p-8 pb-20 md:pt-5 md:pb-10 py-20 bg-gradient-to-b from-white to-[#d2dcff]'>
@@ -50,8 +56,12 @@ const SignToPage = () => {
             />
         </div>
         <div className='flex gap-2 mt-10 justify-center'>
-            <Button className='btn-primary'>Acesse já</Button>
-            <Button className="bg-transparent text-blue-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-800 hover:text-white">Saiba mais
+            <Button className='btn-primary'
+            onClick={redirectToSignup}
+            >Acesse já</Button>
+            <Button className="bg-transparent text-blue-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-800 hover:text-white"
+            onClick={redirectToSignup}
+            >Saiba mais
                 <ArrowRight />
             </Button>
         </div>

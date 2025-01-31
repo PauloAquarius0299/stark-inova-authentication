@@ -3,9 +3,15 @@ import { useState } from "react";
 import Image from "next/image";
 import { ArrowRight, MenuIcon, X } from "lucide-react";
 import Logo from "@/assets/logo.png";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter(); 
+
+  const redirectToSignup = () => {
+    router.push('/signup'); 
+  }
 
   return (
     <header className="sticky top-0 w-full bg-white shadow-md z-50">
@@ -47,7 +53,9 @@ const Header = () => {
             <a href="#" className="hover:text-gray-700">Serviços</a>
             <a href="#" className="hover:text-gray-700">Clientes</a>
             <a href="#" className="hover:text-gray-700">Contato</a>
-            <button className="bg-black text-white px-4 py-2 rounded-lg font-medium flex items-center justify-center">
+            <button className="bg-black text-white px-4 py-2 rounded-lg font-medium flex items-center justify-center"
+            onClick={redirectToSignup}
+            >
               Se Cadastre
               <ArrowRight className="h-4 w-4 ml-1" aria-label="Seta para a direita" />
             </button>

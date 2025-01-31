@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Seta from "@/assets/seta.png"
 import Robo from "@/assets/robo.png"
 import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
+import { useRouter } from 'next/navigation';
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -14,6 +15,12 @@ const Hero = () => {
     target: heroRef,
     offset: ["start end", "end start"]
   });
+
+  const router = useRouter(); 
+  
+    const redirectToSignup = () => {
+      router.push('/signup'); 
+    }
 
   const translateYSeta = useTransform(scrollYProgress, [0, 1], [0, -50]);
   const translateXRobo = useTransform(scrollYProgress, [0, 1], [0, 75]);
@@ -33,10 +40,14 @@ const Hero = () => {
               A análise de dados, aliada à inovação e tecnologia, impulsiona a transformação digital, proporcionando insights poderosos que orientam decisões estratégicas e criam novas oportunidades para empresas se destacarem no mercado.
             </p>
             <div className='flex flex-col md:flex-row gap-4 items-center justify-center md:justify-start'>
-              <Button className="bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-900">
+              <Button 
+              onClick={redirectToSignup}
+              className="bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-900">
                 Saiba Mais
               </Button>
-              <Button className="bg-transparent text-blue-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-800 hover:text-white">
+              <Button 
+              onClick={redirectToSignup}
+              className="bg-transparent text-blue-800 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-800 hover:text-white">
                 <span>Comece Já</span>
                 <ArrowRightIcon className='h-5 w-5' />
               </Button>
