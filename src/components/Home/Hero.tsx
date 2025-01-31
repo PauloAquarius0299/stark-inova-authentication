@@ -1,12 +1,23 @@
-import React from 'react';
+"use client"
+import React, { useRef } from 'react';
 import { Button } from '../ui/button';
 import { ArrowRightIcon } from 'lucide-react';
 import BarChat from "@/assets/hero.png";
 import Image from 'next/image';
 import Seta from "@/assets/seta.png"
 import Robo from "@/assets/robo.png"
+import { motion, useMotionValueEvent, useScroll, useTransform } from "framer-motion";
 
 const Hero = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start end", "end start"]
+  });
+
+  const translateYSeta = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const translateXRobo = useTransform(scrollYProgress, [0, 1], [0, 75]);
+
   return (
     <section className='p-8 pb-20 md:pt-5 md:pb-10 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#2e51d3,#eaeefe_100%)] py-20'>
       <div className='container mx-auto px-4'>
@@ -19,7 +30,7 @@ const Hero = () => {
               A MELHOR INOVAÇÃO PARA O SEU NEGÓCIO
             </h1>
             <p className='text-xl text-[#010d3f] tracking-tight mb-8'>
-            A análise de dados, aliada à inovação e tecnologia, impulsiona a transformação digital, proporcionando insights poderosos que orientam decisões estratégicas e criam novas oportunidades para empresas se destacarem no mercado.
+              A análise de dados, aliada à inovação e tecnologia, impulsiona a transformação digital, proporcionando insights poderosos que orientam decisões estratégicas e criam novas oportunidades para empresas se destacarem no mercado.
             </p>
             <div className='flex flex-col md:flex-row gap-4 items-center justify-center md:justify-start'>
               <Button className="bg-blue-800 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-blue-900">
@@ -32,23 +43,36 @@ const Hero = () => {
             </div>
           </div>
           <div className='mt-20 md:mt-0 md:h-[648px] md:flex-1 relative'>
-            <Image
-              src={BarChat}
+            <motion.img
+              src={BarChat.src}
               alt='hero image'
               className='md:absolute md:h-full md:w-auto md:max-w-none'
+              animate={{
+                translateY: [-30, 30],
+              }}
+              transition={{
+                repeat: Infinity,
+                repeatType: 'mirror',
+                duration: 2,
+                ease: 'easeInOut'
+              }}
             />
-            <Image 
-              src={Seta}
+            <motion.img
+              src={Seta.src}
               width={160}
               height={160}
               alt='seta hero'
               className='hidden md:block absolute top-8 right-120'
+              style={{ translateY: translateYSeta }}
+              transition={{ ease: "easeOut", duration: 2 }}
             />
-            <Image 
-            src={Robo}
-            alt='robo hero'
-            width={160}
-            className='hidden lg:block absolute top-[524px] left-[448px] rotate-[15deg]'
+            <motion.img
+              src={Robo.src}
+              alt='robo hero'
+              width={160}
+              className='hidden lg:block absolute top-[524px] left-[448px] rotate-[15deg]'
+              style={{ translateX: translateXRobo }}
+              transition={{ ease: "easeOut", duration: 2 }}
             />
           </div>
         </div>

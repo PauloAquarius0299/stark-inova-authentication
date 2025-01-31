@@ -1,10 +1,21 @@
+"use client";
 import Image from 'next/image'
-import React from 'react'
+import React, { useRef } from 'react'
 import product from "@/assets/product-image.png"
 import Guy from "@/assets/laptop2.png"
 import Mundo from "@/assets/mundo.png"
+import {motion, useScroll, useTransform} from "framer-motion";
 
 const ProductShowcase = () => {
+
+  const sectionRef = useRef(null);
+  const {scrollYProgress} = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  });
+
+  const scaleProduct = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+
   return (
     <section className='p-8 pb-20 bg-gradient-to-b from-[#ffffff] to-{#d2dcff] py-24 overflow-x-clip'> 
       <div className='container'>
@@ -18,24 +29,44 @@ const ProductShowcase = () => {
             </p>
         </div>
         <div className='relative'>
-            <Image
-            src={product}
+            <motion.img
+            src={product.src}
             alt='product hero imagem'
             className='mt-10'
+            style={{ scale: scaleProduct }}
+            transition={{ ease: "easeOut", duration: 0.5 }}
             />
-            <Image 
-            src={Guy}
+            <motion.img
+            src={Guy.src}
             alt='Guy in laptop'
             width={340}
             height={340}
             className='absolute hidden md:block -right-36 -top-32'
+            animate={{
+              translateY: [-30, 30],
+            }}
+            transition={{
+              repeat: Infinity,
+              repeatType: 'mirror',
+              duration: 2,
+              ease: 'easeInOut'
+            }}
             />
-            <Image 
-            src={Mundo}
+            <motion.img
+            src={Mundo.src}
             alt='Guy in world'
             width={380}
             height={380}
             className='absolute hidden md:block -bottom-20 -left-15'
+            animate={{
+              translateY: [-30, 30],
+            }}
+            transition={{
+              repeat: Infinity,
+              repeatType: 'mirror',
+              duration: 2,
+              ease: 'easeInOut'
+            }}
             />
         </div>
       </div>

@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import avatar1 from "@/assets/avatar1.jpg"
 import avatar2 from "@/assets/avatar2.jpg"
@@ -9,6 +10,7 @@ import avatar7 from "@/assets/avatar7.png"
 import avatar8 from "@/assets/avatar8.jpeg"
 import avatar9 from "@/assets/avatar9.jpg"
 import Image from 'next/image'
+import {motion} from "framer-motion"
 
 const testimonials = [
     {
@@ -67,72 +69,72 @@ const testimonials = [
     },
   ];
 
-  const firstColumn= testimonials.slice(0,3);
-  const secondColumn= testimonials.slice(3,6);
-  const thirdColumn= testimonials.slice(6,9);
+  const firstColumn = testimonials.slice(0, 3);
+  const secondColumn = testimonials.slice(3, 6);
+  const thirdColumn = testimonials.slice(6, 9);
 
-const Clients = (props: unknown) => {
-  return (
-    <section className='bg-white p-8 pb-20 md:pt-5 md:pb-10 py-20'>
-      <div className='container'>
-        <div className='flex justify-center'>
-            <div className='tag'>
-                Clientes
-                </div>
-        </div>
-            <h2 className='section-title'>O que eles dizem</h2>
-            <p className='section-description'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur, possimus beatae! Debitis laboriosam, quam voluptatem ratione eum libero magni recusandae.
+  const Clients = (props: unknown) => {
+    return (
+      <section className='bg-white p-8 pb-20 md:pt-5 md:pb-10 py-20'>
+        <div className='container'>
+          <div className='flex justify-center'>
+              <div className='tag'>
+                  Clientes
+                  </div>
+          </div>
+              <h2 className='section-title'>O que eles dizem</h2>
+              <p className='section-description'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur, possimus beatae! Debitis laboriosam, quam voluptatem ratione eum libero magni recusandae.
+  
+              </p>
+              <div className='flex justify-center gap-6'>
+                  <div className='flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black,transparent,black_25%,black_75%,transparent)]'>
+                      {firstColumn.map(({text, imageSrc, name, username}) => (
+                          <div className='card' key={name}>
+                              <div>{text}</div>
+                              <div className='flex items-center gap-2 mt-5'>
+                                  <Image src={imageSrc} alt={name} width={40} height={40} className='h-10 w-10 rounded-full' />
+                                  <div className='flex flex-col'>
+                                      <div className='font-medium tracking-tight leading-5'>{name}</div>
+                                      <div className='leading-5 tracking-tight'>{username}</div>
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+                  </div>
+  
+                  <div className='flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black,transparent,black_25%,black_75%,transparent)]'>
+                      {secondColumn.map(({text, imageSrc, name, username}) => (
+                          <div className='card' key={name}>
+                              <div>{text}</div>
+                              <div className='flex items-center gap-2 mt-5'>
+                                  <Image src={imageSrc} alt={name} width={40} height={40} className='h-10 w-10 rounded-full' />
+                                  <div className='flex flex-col'>
+                                      <div className='font-medium tracking-tight leading-5'>{name}</div>
+                                      <div className='leading-5 tracking-tight'>{username}</div>
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+                  </div>
+  
+                  <div className='flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black,transparent,black_25%,black_75%,transparent)]'>
+                      {thirdColumn.map(({text, imageSrc, name, username}) => (
+                          <div className='card' key={name}>
+                              <div>{text}</div>
+                              <div className='flex items-center gap-2 mt-5'>
+                                  <Image src={imageSrc} alt={name} width={40} height={40} className='h-10 w-10 rounded-full' />
+                                  <div className='flex flex-col'>
+                                      <div className='font-medium tracking-tight leading-5'>{name}</div>
+                                      <div className='leading-5 tracking-tight'>{username}</div>
+                                  </div>
+                              </div>
+                          </div>
+                      ))}
+                  </div>
+              </div>
+          </div> 
+      </section>
+    )
+  }
 
-            </p>
-            <div className='flex justify-center gap-6'>
-                <div className='flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black,transparent,black_25%,black_75%,transparent)]'>
-                    {firstColumn.map(({text, imageSrc, name, username}) => (
-                        <div className='card'>
-                            <div>{text}</div>
-                            <div className='flex items-center gap-2 mt-5'>
-                                <Image src={imageSrc} alt={name} width={40} height={40} className='h-10 w-10 rounded-full' />
-                                <div className='flex flex-col'>
-                                    <div className='font-medium tracking-tight leading-5'>{name}</div>
-                                    <div className='leading-5 tracking-tight'>{username}</div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className='flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black,transparent,black_25%,black_75%,transparent)]'>
-                    {secondColumn.map(({text, imageSrc, name, username}) => (
-                        <div className='card'>
-                            <div>{text}</div>
-                            <div className='flex items-center gap-2 mt-5'>
-                                <Image src={imageSrc} alt={name} width={40} height={40} className='h-10 w-10 rounded-full' />
-                                <div className='flex flex-col'>
-                                    <div className='font-medium tracking-tight leading-5'>{name}</div>
-                                    <div className='leading-5 tracking-tight'>{username}</div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className='flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black,transparent,black_25%,black_75%,transparent)]'>
-                    {thirdColumn.map(({text, imageSrc, name, username}) => (
-                        <div className='card'>
-                            <div>{text}</div>
-                            <div className='flex items-center gap-2 mt-5'>
-                                <Image src={imageSrc} alt={name} width={40} height={40} className='h-10 w-10 rounded-full' />
-                                <div className='flex flex-col'>
-                                    <div className='font-medium tracking-tight leading-5'>{name}</div>
-                                    <div className='leading-5 tracking-tight'>{username}</div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div> 
-    </section>
-  )
-}
-
-export default Clients
+export default Clients;
