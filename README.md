@@ -1,3 +1,8 @@
+# Stark Inova Landing Page 
+Desenvolvendo uma landing page simples utilizando varias animações com framer-motion, Nextjs, TypeScript, Tailwindcss, Lucia e AuthJs
+![Captura de Tela (600)](https://github.com/user-attachments/assets/a90a78f1-4a34-4085-81b4-b76e65b7dd68)
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
